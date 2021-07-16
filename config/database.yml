@@ -25,6 +25,8 @@ default: &default
 development:
   <<: *default
   database: kiln_database_development
+  username: justin
+  password: <%= ENV['KILN_DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -32,6 +34,8 @@ development:
 test:
   <<: *default
   database: kiln_database_test
+  username: justin
+  password: <%= ENV['KILN_DATABASE_PASSWORD'] %>
 
 production:
   <<: *default
