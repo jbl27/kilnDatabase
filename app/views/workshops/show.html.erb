@@ -14,4 +14,18 @@
   </li>
 </ul>
 
-<p>KILNS</p>
+<%= link_to "Create New Kiln", new_workshop_kiln_path(@workshop), :style=>'padding-bottom:`100px;' %>
+
+<% unless @workshop.kilns.empty? %>
+  <% @workshop.kilns.each do |kiln| %>
+    <p>
+      <%= link_to kiln.name, workshop_kiln_path(@workshop, kiln) %><br>
+      method(s):
+      <% kiln.drying_methods.each do |method| %>
+        <%= method.name %>; 
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
+
+<p>to work on: brand/model, capacity, dimensions?, occupied/vacant, approx time to completion</p>

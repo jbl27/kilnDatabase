@@ -1,0 +1,2 @@
+module KilnsHelper
+end

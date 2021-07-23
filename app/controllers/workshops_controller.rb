@@ -1,6 +1,7 @@
 class WorkshopsController < ApplicationController
   def show
     @user = current_user
+    @workshop = @user.workshops.find(params[:id])
   end
 
   def new

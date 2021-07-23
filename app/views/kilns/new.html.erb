@@ -1,0 +1,13 @@
+<h2>Add a kiln:</h2>
+<%= form_with model: [@workshop, @workshop.kilns.build] do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.collection_check_boxes :drying_method_ids, DryingMethod.order(:name), :id, :name %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

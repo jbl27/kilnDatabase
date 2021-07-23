@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_23_054245) do
+ActiveRecord::Schema.define(version: 2021_07_23_110505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drying_methods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "drying_methods_kilns", id: false, force: :cascade do |t|
+    t.bigint "drying_method_id", null: false
+    t.bigint "kiln_id", null: false
+  end
+
+  create_table "kilns", force: :cascade do |t|
+    t.string "name"
+    t.bigint "workshop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["workshop_id"], name: "index_kilns_on_workshop_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,5 +54,6 @@ ActiveRecord::Schema.define(version: 2021_07_23_054245) do
     t.index ["user_id"], name: "index_workshops_on_user_id"
   end
 
+  add_foreign_key "kilns", "workshops"
   add_foreign_key "workshops", "users"
 end
